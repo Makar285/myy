@@ -11,7 +11,7 @@ function userLogin(status) {
     <li><button class="one">ONE</button></li>
     <br><br>
     <li>
-      <form action="http://localhost:8080/feed/post" method="POST">
+      <form action="https://mean-candies-march.loca.lt/feed/post" method="POST">
         <label for="title">Title</label>
         <input class="title" type="text" name="title" id="title"><br>
 
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', e => {
   console.log('token in localSorage', token);
 
   if(token) {
-    fetch('http://localhost:8080/feed/my', {
+    fetch('https://mean-candies-march.loca.lt/feed/my', {
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
         'Authorization': (token)?("Bearer " + token):(''),
@@ -199,7 +199,7 @@ body.addEventListener('click', e => {
   if(e.target.closest('.one')) {
     const token = localStorage.getItem('token') || '';
 
-    fetch('http://localhost:8080/feed/posts', {
+    fetch('https://mean-candies-march.loca.lt/feed/posts', {
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
         'Authorization': (token)?("Bearer " + token):('')
@@ -234,7 +234,7 @@ body.addEventListener('click', e => {
 
             for(const el of currentValues) {
               console.log(el);
-              valueForImg(el, `http://localhost:8080/${decodeURIComponent(el.image_url)}`, el.title, `id: ${el.id}, title: ${el.title}, content: ${el.content}, image_url: ${el.image_url}, creator_name: ${el.name}, creaor_email: ${el.email}, creator_password: ${el.password}, creator_status: ${el.status}, createdAt: ${el.created_at}`, paginationContainerPosts);
+              valueForImg(el, `https://mean-candies-march.loca.lt/${decodeURIComponent(el.image_url)}`, el.title, `id: ${el.id}, title: ${el.title}, content: ${el.content}, image_url: ${el.image_url}, creator_name: ${el.name}, creaor_email: ${el.email}, creator_password: ${el.password}, creator_status: ${el.status}, createdAt: ${el.created_at}`, paginationContainerPosts);
             };
           };
 
@@ -350,7 +350,7 @@ body.addEventListener('click', e => {
       return;
     };
     
-    fetch('http://localhost:8080/feed/post', {
+    fetch('https://mean-candies-march.loca.lt/feed/post', {
       method: "POST",
       body: formData,
       headers: {
@@ -372,7 +372,7 @@ body.addEventListener('click', e => {
       } else if(data.type === 'text') {
         valueNotImg(data.result, false);
       } else {
-        valueForImg(data, `http://localhost:8080/${decodeURIComponent(data.post.image_url)}`, data.post.title, `message: ${data.message}, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
+        valueForImg(data, `https://mean-candies-march.loca.lt/${decodeURIComponent(data.post.image_url)}`, data.post.title, `message: ${data.message}, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
         
         titleInput.value = contentInput.value = '';
       };
@@ -383,9 +383,9 @@ body.addEventListener('click', e => {
     const token = localStorage.getItem('token') || '';
 
     const postId = postIdInput.value;
-    console.log(`http://localhost:8080/feed/post/${postId}`);
+    console.log(`https://mean-candies-march.loca.lt/feed/post/${postId}`);
 
-    fetch(`http://localhost:8080/feed/post/${postId}`, {
+    fetch(`https://mean-candies-march.loca.lt/feed/post/${postId}`, {
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
         'Authorization': (token)?("Bearer " + token):('')
@@ -403,7 +403,7 @@ body.addEventListener('click', e => {
           const errors = document.querySelector('.errors');
           errors.innerHTML = '';
 
-          valueForImg(data, `http://localhost:8080/${decodeURIComponent(data.image_url)}`, data.title, `id: ${data.id}, title: ${data.title}, content: ${data.content}, image_url: ${data.image_url}, creatorUserId: ${data.creator_user_id}, createdAt: ${data.created_at}`);
+          valueForImg(data, `https://mean-candies-march.loca.lt/${decodeURIComponent(data.image_url)}`, data.title, `id: ${data.id}, title: ${data.title}, content: ${data.content}, image_url: ${data.image_url}, creatorUserId: ${data.creator_user_id}, createdAt: ${data.created_at}`);
         };
       })
       .catch(err=>console.log(err));
@@ -422,7 +422,7 @@ body.addEventListener('click', e => {
       formData.append('content', newContentInput.value);
       formData.append('image', imageInput2.files[0]);
 
-      fetch(`http://localhost:8080/feed/post/${postId}`, {
+      fetch(`https://mean-candies-march.loca.lt/feed/post/${postId}`, {
         method: "PUT",
         body: formData,
         headers: {
@@ -449,7 +449,7 @@ body.addEventListener('click', e => {
           valueNotImg(data.result, false);
         } else {
           newTitleInput.value = newContentInput.value = imageInput2.value = postIdForUpdateInput.value = '';
-          valueForImg(data, `http://localhost:8080/${decodeURIComponent(data.post.image_url)}`, data.post.title, `message: ${data.message}, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
+          valueForImg(data, `https://mean-candies-march.loca.lt/${decodeURIComponent(data.post.image_url)}`, data.post.title, `message: ${data.message}, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
         }
       })
       .catch(err => console.log(err));
@@ -462,7 +462,7 @@ body.addEventListener('click', e => {
     const postId = postIdForDeleteInput.value;
     const token = localStorage.getItem('token') || '';
 
-    fetch(`http://localhost:8080/feed/post/${postId}`, {
+    fetch(`https://mean-candies-march.loca.lt/feed/post/${postId}`, {
       method: "DELETE",
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
@@ -492,7 +492,7 @@ body.addEventListener('click', e => {
 
     const newStatus = newStatusInput.value;
 
-    fetch('http://localhost:8080/feed/status', {
+    fetch('https://mean-candies-march.loca.lt/feed/status', {
       method: "POST",
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
@@ -533,7 +533,7 @@ body.addEventListener('click', e => {
     if(password !== confirmPassword) {
       valueNotImg('message: Пароли не совпадают.', false);
     } else {
-      fetch('http://localhost:8080/auth/signup', {
+      fetch('https://mean-candies-march.loca.lt/auth/signup', {
         method: "POST",
         headers: {
           'Content-Type': "application/json",
@@ -571,7 +571,7 @@ body.addEventListener('click', e => {
     const password = passwordForLoginInput.value;
     console.log(email, password);
 
-    fetch('http://localhost:8080/auth/login', {
+    fetch('https://mean-candies-march.loca.lt/auth/login', {
       method: "POST",
       headers: {
         'Content-Type': "application/json",
