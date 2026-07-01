@@ -1,21 +1,21 @@
 // import { io } from "https://socket.io";
 
 // // Подключаемся к вашему серверу Node.js
-const socket = io("https://makar-server-test.loca.lt"); 
+const socket = io("https://a5efe38796985d.lhr.life"); 
 
 socket.on("posts", data => {
   console.log(data);
   if(data.action === 'create') {
-    valueForImg(data, `https://makar-server-test.loca.lt/${decodeURIComponent(data.post.image_url)}`, data.post.title, `Изображение создано, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
+    valueForImg(data, `https://a5efe38796985d.lhr.life/${decodeURIComponent(data.post.image_url)}`, data.post.title, `Изображение создано, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
     document.querySelector('.title').value = document.querySelector('.content').value = '';
   } else if(data.action === 'update') {
     document.querySelector('.newTitle').value = document.querySelector('.newContent').value = document.querySelector('.image2').value = document.querySelector('.postIdForUpdate').value = '';
-    valueForImg(data, `https://makar-server-test.loca.lt/${decodeURIComponent(data.post.image_url)}`, data.post.title, `Изображение изменено, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
+    valueForImg(data, `https://a5efe38796985d.lhr.life/${decodeURIComponent(data.post.image_url)}`, data.post.title, `Изображение изменено, id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creator_name: ${data.post.name}, creaor_email: ${data.post.email}, creator_password: ${data.post.password}, creator_status: ${data.post.status}, createdAt: ${data.post.created_at}`);
   } else if(data.action === 'delete') {
     valueNotImg( `Пост с id ${data.postId} удален` , true);
   } else if(data.action === 'getPostById') {
     document.querySelector('.postId').value = '';
-    valueForImg(data, `https://makar-server-test.loca.lt/${decodeURIComponent(data.post.image_url)}`, data.post.title, `id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creatorUserId: ${data.post.creator_user_id}, createdAt: ${data.post.created_at}`);
+    valueForImg(data, `https://a5efe38796985d.lhr.life/${decodeURIComponent(data.post.image_url)}`, data.post.title, `id: ${data.post.id}, title: ${data.post.title}, content: ${data.post.content}, image_url: ${data.post.image_url}, creatorUserId: ${data.post.creator_user_id}, createdAt: ${data.post.created_at}`);
   }
 });
 
@@ -33,7 +33,7 @@ function userLogin(status) {
     <li><button class="one">ONE</button></li>
     <br><br>
     <li>
-      <form action="https://makar-server-test.loca.lt/feed/post" method="POST">
+      <form action="https://a5efe38796985d.lhr.life/feed/post" method="POST">
         <label for="title">Title</label>
         <input class="title" type="text" name="title" id="title"><br>
 
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', e => {
   console.log('token in localSorage', token);
 
   if(token) {
-    fetch('https://makar-server-test.loca.lt/feed/my', {
+    fetch('https://a5efe38796985d.lhr.life/feed/my', {
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
         'Authorization': (token)?("Bearer " + token):(''),
@@ -221,7 +221,7 @@ body.addEventListener('click', e => {
   if(e.target.closest('.one')) {
     const token = localStorage.getItem('token') || '';
 
-    fetch('https://makar-server-test.loca.lt/feed/posts', {
+    fetch('https://a5efe38796985d.lhr.life/feed/posts', {
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
         'Authorization': (token)?("Bearer " + token):('')
@@ -256,7 +256,7 @@ body.addEventListener('click', e => {
 
             for(const el of currentValues) {
               console.log(el);
-              valueForImg(el, `https://makar-server-test.loca.lt/${decodeURIComponent(el.image_url)}`, el.title, `id: ${el.id}, title: ${el.title}, content: ${el.content}, image_url: ${el.image_url}, creator_name: ${el.name}, creaor_email: ${el.email}, creator_password: ${el.password}, creator_status: ${el.status}, createdAt: ${el.created_at}`, paginationContainerPosts);
+              valueForImg(el, `https://a5efe38796985d.lhr.life/${decodeURIComponent(el.image_url)}`, el.title, `id: ${el.id}, title: ${el.title}, content: ${el.content}, image_url: ${el.image_url}, creator_name: ${el.name}, creaor_email: ${el.email}, creator_password: ${el.password}, creator_status: ${el.status}, createdAt: ${el.created_at}`, paginationContainerPosts);
             };
           };
 
@@ -374,7 +374,7 @@ body.addEventListener('click', e => {
       return;
     };
     
-    fetch('https://makar-server-test.loca.lt/feed/post', {
+    fetch('https://a5efe38796985d.lhr.life/feed/post', {
       method: "POST",
       body: formData,
       headers: {
@@ -404,9 +404,9 @@ body.addEventListener('click', e => {
     const token = localStorage.getItem('token') || '';
 
     const postId = postIdInput.value;
-    console.log(`https://makar-server-test.loca.lt/feed/post/${postId}`);
+    console.log(`https://a5efe38796985d.lhr.life/feed/post/${postId}`);
 
-    fetch(`https://makar-server-test.loca.lt/feed/post/${postId}`, {
+    fetch(`https://a5efe38796985d.lhr.life/feed/post/${postId}`, {
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
         'Authorization': (token)?("Bearer " + token):('')
@@ -441,7 +441,7 @@ body.addEventListener('click', e => {
       formData.append('content', newContentInput.value);
       formData.append('image', imageInput2.files[0]);
 
-      fetch(`https://makar-server-test.loca.lt/feed/post/${postId}`, {
+      fetch(`https://a5efe38796985d.lhr.life/feed/post/${postId}`, {
         method: "PUT",
         body: formData,
         headers: {
@@ -478,7 +478,7 @@ body.addEventListener('click', e => {
     const postId = postIdForDeleteInput.value;
     const token = localStorage.getItem('token') || '';
 
-    fetch(`https://makar-server-test.loca.lt/feed/post/${postId}`, {
+    fetch(`https://a5efe38796985d.lhr.life/feed/post/${postId}`, {
       method: "DELETE",
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
@@ -506,7 +506,7 @@ body.addEventListener('click', e => {
 
     const newStatus = newStatusInput.value;
 
-    fetch('https://makar-server-test.loca.lt/feed/status', {
+    fetch('https://a5efe38796985d.lhr.life/feed/status', {
       method: "POST",
       headers: {
         // если token есть отправить 'Bearer ' + токен а если нету пустую строку что бы мидлевар is-auth выдал ошибку 401 Not authenticated.
@@ -547,7 +547,7 @@ body.addEventListener('click', e => {
     if(password !== confirmPassword) {
       valueNotImg('message: Пароли не совпадают.', false);
     } else {
-      fetch('https://makar-server-test.loca.lt/auth/signup', {
+      fetch('https://a5efe38796985d.lhr.life/auth/signup', {
         method: "POST",
         headers: {
           'Content-Type': "application/json",
@@ -585,7 +585,7 @@ body.addEventListener('click', e => {
     const password = passwordForLoginInput.value;
     console.log(email, password);
 
-    fetch('https://makar-server-test.loca.lt/auth/login', {
+    fetch('https://a5efe38796985d.lhr.life/auth/login', {
       method: "POST",
       headers: {
         'Content-Type': "application/json",
